@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.plasticlove.dao.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="cn.plasticlove.entity.Article" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="cover_image" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="content" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="top" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="type_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="status" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="recommended" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="original" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="description" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="keywords" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="comment" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.plasticlove.entity.Article" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="cover_image" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="content" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="top" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="type_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="status" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="recommended" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="original" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="description" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="keywords" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="comment" jdbcType="BIT" javaType="java.lang.Boolean" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="content_md" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, user_id, cover_image, content, top, type_id, status, recommended, original, 
+    description, keywords, comment, create_time, update_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    content_md
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from blog_article
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from blog_article
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.plasticlove.entity.Article" >
+    insert into blog_article (id, title, user_id, 
+      cover_image, content, top, 
+      type_id, status, recommended, 
+      original, description, keywords, 
+      comment, create_time, update_time, 
+      content_md)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
+      #{coverImage,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{top,jdbcType=BIT}, 
+      #{typeId,jdbcType=BIGINT}, #{status,jdbcType=BIT}, #{recommended,jdbcType=BIT}, 
+      #{original,jdbcType=BIT}, #{description,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, 
+      #{comment,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{contentMd,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.plasticlove.entity.Article" >
+    insert into blog_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="coverImage != null" >
+        cover_image,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="top != null" >
+        top,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="recommended != null" >
+        recommended,
+      </if>
+      <if test="original != null" >
+        original,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="keywords != null" >
+        keywords,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="contentMd != null" >
+        content_md,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="coverImage != null" >
+        #{coverImage,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="top != null" >
+        #{top,jdbcType=BIT},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="recommended != null" >
+        #{recommended,jdbcType=BIT},
+      </if>
+      <if test="original != null" >
+        #{original,jdbcType=BIT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contentMd != null" >
+        #{contentMd,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.plasticlove.entity.Article" >
+    update blog_article
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="coverImage != null" >
+        cover_image = #{coverImage,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="top != null" >
+        top = #{top,jdbcType=BIT},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="recommended != null" >
+        recommended = #{recommended,jdbcType=BIT},
+      </if>
+      <if test="original != null" >
+        original = #{original,jdbcType=BIT},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="keywords != null" >
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contentMd != null" >
+        content_md = #{contentMd,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.plasticlove.entity.Article" >
+    update blog_article
+    set title = #{title,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      cover_image = #{coverImage,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      top = #{top,jdbcType=BIT},
+      type_id = #{typeId,jdbcType=BIGINT},
+      status = #{status,jdbcType=BIT},
+      recommended = #{recommended,jdbcType=BIT},
+      original = #{original,jdbcType=BIT},
+      description = #{description,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      content_md = #{contentMd,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.plasticlove.entity.Article" >
+    update blog_article
+    set title = #{title,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      cover_image = #{coverImage,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      top = #{top,jdbcType=BIT},
+      type_id = #{typeId,jdbcType=BIGINT},
+      status = #{status,jdbcType=BIT},
+      recommended = #{recommended,jdbcType=BIT},
+      original = #{original,jdbcType=BIT},
+      description = #{description,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectArticleList" resultType="cn.plasticlove.dto.ArticleDto">
+    select id,title,user_id,cover_image,type_id,description,comment,create_time
+    from
+      blog_article
+  </select>
+
+</mapper>

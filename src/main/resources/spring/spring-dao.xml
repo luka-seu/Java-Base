@@ -56,6 +56,10 @@
 
 		<!--配置SqlSessionFactory-->
 		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+
+			<!--mybatis全局配置文件-->
+			<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+
 			<!--配置别名，减去在mapper.xml文件书写全路径名-->
 			<property name="typeAliasesPackage" value="cn.plasticlove.entity"></property>
 			<property name="dataSource" ref="dataSource"></property>
