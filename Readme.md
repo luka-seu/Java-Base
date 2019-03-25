@@ -18,3 +18,4 @@
        </mvc:message-converters>
     </mvc:annotation-driven>'
 > 3.返回的通用响应没有getter方法（最难发现）
+
