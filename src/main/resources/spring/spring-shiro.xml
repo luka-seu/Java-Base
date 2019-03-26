@@ -22,6 +22,7 @@
 		<property name="unauthorizedUrl" value="/login.jsp" />
 		<property name="filterChainDefinitions">
 			<value>
+				/=anon
 				/css/**= anon
 				/fonts/**= anon
 				/images/**= anon
@@ -31,7 +32,7 @@
 				/index.html=anon
 				/login=anon
 				/index=anon
-				/=anon
+
 				/manage/**=authc
 			</value>
 		</property>

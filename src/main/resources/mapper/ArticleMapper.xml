@@ -266,9 +266,23 @@
   </update>
 
   <select id="selectArticleList" resultType="cn.plasticlove.dto.ArticleDto">
-    select id,title,user_id,cover_image,type_id,description,comment,create_time
-    from
-      blog_article
+    SELECT
+	ba.id,
+	ba.title,
+	su.username,
+	ba.cover_image,
+	bt.typename,
+	ba.description,
+
+	ba.create_time
+FROM
+	blog_article ba
+	left JOIN sys_user su ON ba.user_id = su.id
+
+
+	right JOIN blog_type bt ON bt.id = ba.type_id
+
+
   </select>
 
 </mapper>

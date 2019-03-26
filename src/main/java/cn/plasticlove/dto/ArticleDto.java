@@ -21,15 +21,19 @@ public class ArticleDto {
 
     private String title;//文章标题
 
-    private Long userId;//文章作者
+    private String username;//文章作者
 
     private String coverImage;//文章封面
 
-    private Long typeId;//文章类型id
+    private String typename;//文章类型
 
     private String description;//文章简介
 
-    private Boolean comment;//是否可以评论
+    private int commentCount;//评论总数
+
+    private Boolean original;//是否原创
+
+    private Boolean comment;//是否开启评论
 
     private Date createTime;//创建时间
 }

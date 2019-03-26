@@ -1,8 +1,9 @@
 ﻿<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; Charset=gb2312">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="Content-Language" content="zh-CN">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <title>PlasticLove - 一个Java程序员的个人博客网站</title>
@@ -15,6 +16,9 @@
     <link href="../css/global.css" rel="stylesheet"/>
     <!-- 本页样式表 -->
     <link href="../css/home.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" th:href="@{../css/pagination.css}" />
+    <link href="../css/zxf_page.css" rel="stylesheet"/>
 </head>
 <body>
 <!-- 导航 -->
@@ -28,11 +32,11 @@
             <img src="../images/Absolutely.jpg" alt="Absolutely" title="Absolutely"/>
         </a>
         <!-- PlasticLove -->
-        <a class="blog-logo" href="index.html">PlasticLove</a>
+        <a class="blog-logo" th:href="@{index.html}">PlasticLove</a>
         <!-- 导航菜单 -->
         <ul class="layui-nav" lay-filter="nav">
             <li class="layui-nav-item layui-this">
-                <a href="index.html"><i class="fa fa-home fa-fw"></i>&nbsp;网站首页</a>
+                <a th:href="@{index.html}"><i class="fa fa-home fa-fw"></i>&nbsp;网站首页</a>
             </li>
             <li class="layui-nav-item">
                 <a href="article.html"><i class="fa fa-file-text fa-fw"></i>&nbsp;文章专栏</a>
@@ -82,193 +86,57 @@
             </div>
             <!--左边文章列表-->
             <div class="blog-main-left">
-                <div class="article shadow">
+
+                <div class="article shadow" th:each="article:${articleList}">
                     <div class="article-left">
-                        <!--<img src="../images/cover/201703181909057125.jpg" alt="基于laypage的layui扩展模块（pagesize.js）！" />-->
-                        <!--<img id="img1" />-->
+                        <img th:src="@{${article.coverImage}}"/>
                     </div>
                     <div class="article-right">
                         <div class="article-title">
-                            <a href="detail.html">基于laypage的layui扩展模块（pagesize.js）！</a>
+                            <a href="detail.html" th:text="${{article.title}}">文章标题</a>
                         </div>
-                        <div class="article-abstract">
-                            该模块主要是针对当前版本laypage没有页容量控制功能而制作，使用该模块后即可实现每页显示多少条数据的控制！本人原创，但是可能有可能只对本人的分页写法有用！
+                        <div class="article-abstract" th:text="${{article.description}}">
+                            文章简介
                         </div>
                     </div>
                     <div class="clear"></div>
                     <div class="article-footer">
-                        <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2017-03-18</span>
-                        <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;Absolutely</span>
-                        <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">Web前端</a></span>
+                        <span ><i class="fa fa-clock-o" th:text="'&nbsp'+${#dates.format(article.createTime,'yyyy-MM-dd')}">创建日期</i></span>
+                        <span class="article-author" ><i class="fa fa-user" th:text="'&nbsp'+${{article.username}}">文章作者</i></span>
+                        <span ><i class="fa fa-tag" ></i><a href="#" th:text="'&nbsp'+${{article.typename}}">文章类型</a></span>
                         <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
-                        <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
+                        <span class="article-viewinfo"><i class="fa fa-commenting" th:text="'&nbsp'+${{article.commentCount}}">评论数量</i></span>
                     </div>
                 </div>
-                <div class="article shadow">
-                    <div class="article-left">
-                        <img src="../images/cover/201703181909057125.jpg" alt="基于laypage的layui扩展模块（pagesize.js）！"/>
-                    </div>
-                    <div class="article-right">
-                        <div class="article-title">
-                        </div>
-                        <div class="article-abstract">
-                            该模块主要是针对当前版本laypage没有页容量控制功能而制作，使用该模块后即可实现每页显示多少条数据的控制！本人原创，但是可能有可能只对本人的分页写法有用！
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="article-footer">
-                        <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2017-03-18</span>
-                        <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;Absolutely</span>
-                        <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">Web前端</a></span>
-                        <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
-                        <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
-                    </div>
-                </div>
-                <div class="article shadow">
-                    <div class="article-left">
-                        <img src="../images/cover/201703181909057125.jpg" alt="基于laypage的layui扩展模块（pagesize.js）！"/>
-                    </div>
-                    <div class="article-right">
-                        <div class="article-title">
-                            <a href="detail.html">基于laypage的layui扩展模块（pagesize.js）！</a>
-                        </div>
-                        <div class="article-abstract">
-                            该模块主要是针对当前版本laypage没有页容量控制功能而制作，使用该模块后即可实现每页显示多少条数据的控制！本人原创，但是可能有可能只对本人的分页写法有用！
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="article-footer">
-                        <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2017-03-18</span>
-                        <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;Absolutely</span>
-                        <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">Web前端</a></span>
-                        <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
-                        <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
-                    </div>
-                </div>
-                <div class="article shadow">
-                    <div class="article-left">
-                        <img src="../images/cover/201703181909057125.jpg" alt="基于laypage的layui扩展模块（pagesize.js）！"/>
-                    </div>
-                    <div class="article-right">
-                        <div class="article-title">
-                            <a href="detail.html">基于laypage的layui扩展模块（pagesize.js）！</a>
-                        </div>
-                        <div class="article-abstract">
-                            该模块主要是针对当前版本laypage没有页容量控制功能而制作，使用该模块后即可实现每页显示多少条数据的控制！本人原创，但是可能有可能只对本人的分页写法有用！
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="article-footer">
-                        <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2017-03-18</span>
-                        <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;Absolutely</span>
-                        <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">Web前端</a></span>
-                        <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
-                        <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
-                    </div>
-                </div>
-                <div class="article shadow">
-                    <div class="article-left">
-                        <img src="../images/cover/201703181909057125.jpg" alt="基于laypage的layui扩展模块（pagesize.js）！"/>
-                    </div>
-                    <div class="article-right">
-                        <div class="article-title">
-                            <a href="detail.html">基于laypage的layui扩展模块（pagesize.js）！</a>
-                        </div>
-                        <div class="article-abstract">
-                            该模块主要是针对当前版本laypage没有页容量控制功能而制作，使用该模块后即可实现每页显示多少条数据的控制！本人原创，但是可能有可能只对本人的分页写法有用！
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="article-footer">
-                        <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2017-03-18</span>
-                        <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;Absolutely</span>
-                        <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">Web前端</a></span>
-                        <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
-                        <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
-                    </div>
-                </div>
-                <div class="article shadow">
-                    <div class="article-left">
-                        <img src="../images/cover/201703181909057125.jpg" alt="基于laypage的layui扩展模块（pagesize.js）！"/>
-                    </div>
-                    <div class="article-right">
-                        <div class="article-title">
-                            <a href="detail.html">基于laypage的layui扩展模块（pagesize.js）！</a>
-                        </div>
-                        <div class="article-abstract">
-                            该模块主要是针对当前版本laypage没有页容量控制功能而制作，使用该模块后即可实现每页显示多少条数据的控制！本人原创，但是可能有可能只对本人的分页写法有用！
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="article-footer">
-                        <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2017-03-18</span>
-                        <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;Absolutely</span>
-                        <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">Web前端</a></span>
-                        <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
-                        <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
-                    </div>
-                </div>
-                <div class="article shadow">
-                    <div class="article-left">
-                        <img src="../images/cover/201703181909057125.jpg" alt="基于laypage的layui扩展模块（pagesize.js）！"/>
-                    </div>
-                    <div class="article-right">
-                        <div class="article-title">
-                            <a href="detail.html">基于laypage的layui扩展模块（pagesize.js）！</a>
-                        </div>
-                        <div class="article-abstract">
-                            该模块主要是针对当前版本laypage没有页容量控制功能而制作，使用该模块后即可实现每页显示多少条数据的控制！本人原创，但是可能有可能只对本人的分页写法有用！
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="article-footer">
-                        <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2017-03-18</span>
-                        <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;Absolutely</span>
-                        <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">Web前端</a></span>
-                        <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
-                        <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
-                    </div>
-                </div>
-                <div class="article shadow">
-                    <div class="article-left">
-                        <img src="../images/cover/201703181909057125.jpg" alt="基于laypage的layui扩展模块（pagesize.js）！"/>
-                    </div>
-                    <div class="article-right">
-                        <div class="article-title">
-                            <a href="detail.html">基于laypage的layui扩展模块（pagesize.js）！</a>
-                        </div>
-                        <div class="article-abstract">
-                            该模块主要是针对当前版本laypage没有页容量控制功能而制作，使用该模块后即可实现每页显示多少条数据的控制！本人原创，但是可能有可能只对本人的分页写法有用！
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                    <div class="article-footer">
-                        <span><i class="fa fa-clock-o"></i>&nbsp;&nbsp;2017-03-18</span>
-                        <span class="article-author"><i class="fa fa-user"></i>&nbsp;&nbsp;Absolutely</span>
-                        <span><i class="fa fa-tag"></i>&nbsp;&nbsp;<a href="#">Web前端</a></span>
-                        <span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;0</span>
-                        <span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;4</span>
-                    </div>
-                </div>
+
+
+                <!--<div id="News-Pagination"></div>-->
+                <div class="zxf_pagediv"></div>
+
+
+
+
+
+
             </div>
             <!--右边小栏目-->
             <div class="blog-main-right">
                 <div class="blogerinfo shadow">
                     <div class="blogerinfo-figure">
-                        <img src="../images/Absolutely.jpg" alt="Absolutely"/>
+                        <img src="../images/demo.jpg" height="180" width="180" alt="PlaticLove"/>
                     </div>
-                    <p class="blogerinfo-nickname">Absolutely</p>
-                    <p class="blogerinfo-introduce">一枚90后程序员，.NET开发工程师</p>
-                    <p class="blogerinfo-location"><i class="fa fa-location-arrow"></i>&nbsp;四川 - 成都</p>
+                    <p class="blogerinfo-nickname">PlaticLove</p>
+                    <p class="blogerinfo-introduce">一枚90后程序员，Java开发工程师</p>
+                    <p class="blogerinfo-location"><i class="fa fa-location-arrow"></i>&nbsp;江苏- 南京</p>
                     <hr/>
                     <div class="blogerinfo-contact">
-                        <a target="_blank" title="QQ交流" href="javascript:layer.msg('启动QQ会话窗口')"><i
-                                class="fa fa-qq fa-2x"></i></a>
-                        <a target="_blank" title="给我写信" href="javascript:layer.msg('启动邮我窗口')"><i
+                        <!--<a target="_blank" title="QQ交流" href="javascript:layer.msg('启动QQ会话窗口')"><i-->
+                                <!--class="fa fa-qq fa-2x"></i></a>-->
+                        <a target="_blank" title="dgm_wjy0515@seu.edu.cn" href="https://mail.126.com/"><i
                                 class="fa fa-envelope fa-2x"></i></a>
-                        <a target="_blank" title="新浪微博" href="javascript:layer.msg('转到你的微博主页')"><i
+                        <a target="_blank" title="新浪微博" href="https://weibo.com/u/3520019107?topnav=1&wvr=6&topsug=1"><i
                                 class="fa fa-weibo fa-2x"></i></a>
-                        <a target="_blank" title="码云" href="javascript:layer.msg('转到你的github主页')"><i
+                        <a target="_blank" title="GitHub" href="https://github.com/luka-seu"><i
                                 class="fa fa-git fa-2x"></i></a>
                     </div>
                 </div>
@@ -345,7 +213,7 @@
 <!--侧边导航-->
 <ul class="layui-nav layui-nav-tree layui-nav-side blog-nav-left layui-hide" lay-filter="nav">
     <li class="layui-nav-item layui-this">
-        <a href="home.html"><i class="fa fa-home fa-fw"></i>&nbsp;网站首页</a>
+        <a th:href="@{index.html}"><i class="fa fa-home fa-fw"></i>&nbsp;网站首页</a>
     </li>
     <li class="layui-nav-item">
         <a href="article.html"><i class="fa fa-file-text fa-fw"></i>&nbsp;文章专栏</a>
@@ -381,5 +249,27 @@
 <script src="../js/global.js"></script>
 <!-- 本页脚本 -->
 <script src="../js/home.js"></script>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<!--分页脚本-->
+<script src="../js/zxf_page.js"></script>
+
+<script th:inline="javascript">
+
+    //前端分页功能
+    $(".zxf_pagediv").createPage({
+        pageNum: [[${pageCount}]],
+        current: [[${page}]],
+        backfun: function(e) {
+            // console.log(e);//回调
+            location.href = "/?page="+(e.current);
+        }
+    });
+
+
+
+</script>
+
+
+
 </body>
 </html>

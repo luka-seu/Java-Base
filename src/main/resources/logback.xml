@@ -11,13 +11,13 @@
             <pattern>[%d{HH:mm:ss.SSS}][%p][%c{40}][%t] %m%n</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>info</level>
+            <level>DEBUG</level>
         </filter>
     </appender>
 
-    <appender name="mall" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="blog" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!--<File>d:/mmalllog/mmall.log</File>-->
-        <File>${LOG_FILE_PATH}\mall.log</File>
+        <File>${LOG_FILE_PATH}\blog.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_FILE_PATH}\mall.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
             <append>true</append>
@@ -49,15 +49,18 @@
     </appender>
 
     <logger name="cn.plasticlove" additivity="false" level="INFO" >
-        <appender-ref ref="mall" />
+        <appender-ref ref="blog" />
         <appender-ref ref="console"/>
     </logger>
 
 
 
     <!-- mybatis log 日志 -->
-
-    <logger name="cn.platiclove.dao" level="DEBUG"/>
+    <!--打印sql日志-->
+    <logger name="cn.plasticlove.dao" level="DEBUG">
+        <appender-ref ref="console"/>
+        <appender-ref ref="blog"/>
+    </logger>
 
     <!--<logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" >-->
         <!--<appender-ref ref="console"/>-->

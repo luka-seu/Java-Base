@@ -80,10 +80,10 @@
             <columnOverride column="detail" jdbcType="VARCHAR" />
             <columnOverride column="sub_images" jdbcType="VARCHAR" />
         </table>-->
-        <table tableName="blog_article" domainObjectName="Article" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        <table tableName="sys_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <!--当表的字段有text类型时加入以下配置，不然会有withBolb子类出现-->
-            <columnOverride column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
-            <columnOverride column="contentMd" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <!--<columnOverride column="content" javaType="java.lang.String" jdbcType="VARCHAR" />-->
+            <!--<columnOverride column="contentMd" javaType="java.lang.String" jdbcType="VARCHAR" />-->
         </table>
 
 

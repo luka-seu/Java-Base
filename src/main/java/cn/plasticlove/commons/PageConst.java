@@ -8,6 +8,6 @@ package cn.plasticlove.commons;
 public class PageConst {
 
     public static final int pageNum = 1;
-    public static final int pageSize = 10;
+    public static final int pageSize = 8;
 
 }
