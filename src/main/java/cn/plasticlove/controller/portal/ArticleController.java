@@ -30,6 +30,7 @@ public class ArticleController {
     public String getArticleList(Model model) {
         model.addAttribute("model","Demo");
         return "hello";
+
     }
 
 }
