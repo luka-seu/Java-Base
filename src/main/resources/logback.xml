@@ -11,7 +11,7 @@
             <pattern>[%d{HH:mm:ss.SSS}][%p][%c{40}][%t] %m%n</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>DEBUG</level>
+            <level>info</level>
         </filter>
     </appender>
 
@@ -75,7 +75,7 @@
     <!--</logger>-->
 
 
-    <root level="DEBUG">
+    <root level="info">
         <appender-ref ref="console"/>
         <appender-ref ref="error"/>
     </root>

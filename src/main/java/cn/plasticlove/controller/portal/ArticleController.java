@@ -6,6 +6,7 @@ import cn.plasticlove.service.ArticleService;
 import cn.plasticlove.utils.PageStringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,13 +26,10 @@ public class ArticleController {
 
 
     @RequestMapping(value = "list")
-    @ResponseBody
-    public ServerResponse getArticleList(HttpServletRequest request) {
-        int pageNum = PageStringUtil.pageString2Int(request.getParameter("pageNum"));
-        int pageSize = PageConst.pageSize;
 
-        return articleService.getArticleList(pageNum, pageSize);
-
+    public String getArticleList(Model model) {
+        model.addAttribute("model","Demo");
+        return "hello";
     }
 
 }
