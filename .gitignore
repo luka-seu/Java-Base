@@ -60,7 +60,7 @@ autom4te.cache
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
-
+*.log
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
