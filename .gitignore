@@ -10,7 +10,7 @@ Makefile.in
 /ylwrap
 
 # http://www.gnu.org/software/autoconf
-
+**.gz
 /autom4te.cache
 /autoscan.log
 /autoscan-*.log
