@@ -282,6 +282,9 @@ FROM
 
 	right JOIN blog_type bt ON bt.id = ba.type_id
 
+where ba.recommended = 1
+order by
+ ba.create_time desc
 
   </select>
 

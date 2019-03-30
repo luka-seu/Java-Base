@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; Charset=gb2312">
+    <meta http-equiv="Content-Type" content="text/html; Charset=utf-8">
     <meta http-equiv="Content-Language" content="zh-CN">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <title>PlasticLove - 文章专栏</title>
@@ -91,13 +91,11 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">文章类别</label>
                         <div class="layui-input-block">
-                            <select id="articleType" name="city" lay-verify="required">
-                                <option value=""></option>
-                                <option value="北京">北京</option>
-                                <option value="上海">上海</option>
-                                <option value="广州">广州</option>
-                                <option value="深圳">深圳</option>
-                                <option value="杭州">杭州</option>
+                            <select id="articleType" name="city" lay-verify="required" >
+                                <div th:each="type:${typeList}">
+                                    <option th:value="${{type.typename}}" th:text="${{type.typename}}"></option>
+                                </div>
+
                             </select>
                         </div>
                     </div>
@@ -106,6 +104,7 @@
                         <label class="layui-form-label">文章图片</label>
                         <div class="layui-input-block">
                             <input type="file" name="coverImage" id="coverImage">
+                            <img id="upload_success" height="80" width="80" >
                         </div>
                     </div>
 
@@ -325,36 +324,45 @@
                 var title = $("#titleID").val();
                 var author = $("#authorID").val();
                 var desc = $("#descID").val();
+                var image = $("#upload_success").attr("src");
                 var articleType = $("#articleType").val();
                 var iscomment = $('#iscommentID').is(':checked');
                 var isoriginal = $('#isoriginalID').is(':checked');
                 var content = layedit.getContent(index);
 
 
-                // $.ajax({
-                //     //几个参数需要注意一下
-                //     type: "POST",//方法类型
-                //     dataType: "json",//预期服务器返回的数据类型
-                //     url : "loginPage",//url
-                //     // url : "../ddtcBoardBackEnd/loginPage",//url
-                //     data: {
-                //
-                //     },
-                //     success: function (data) {
-                //
-                //         // localStorage.token=data;
-                //         // location.href="../ddtcBoardBackEnd/indexPage";
-                //         location.href="indexPage";
-                //         console.log(data);//打印服务端返回的数据(调试用)
-                //     },
-                //     error : function() {
-                //         alert("用户名或密码错误");
-                //         location.href="login";
-                //     }
-                // });
+                $.ajax({
+
+                    type: "POST",//方法类型
+                    dataType: "json",//预期服务器返回的数据类型
+                    url : "/manage/article/write",//url
+                    // url : "../ddtcBoardBackEnd/loginPage",//url
+                    data: {
+                        "title":title,
+                        "username":author,
+                        "coverImage":image,
+                        "typename":articleType,
+                        "description":desc,
+                        "original":isoriginal,
+                        "comment":iscomment,
+                        "content":content
+
+                    },
+                    success: function (data) {
+
+                        // localStorage.token=data;
+                        // location.href="../ddtcBoardBackEnd/indexPage";
+                        // location.href="indexPage";
+                        console.log(data);//打印服务端返回的数据(调试用)
+                    },
+                    error : function() {
+                        alert("未知错误");
+                        // location.href="login";
+                    }
+                });
 
 
-                console.log(articleType)
+                // console.log(image)
                 //
                 // console.log(isoriginal)
                 //
@@ -384,9 +392,9 @@
     layui.use('upload', function () {
         layui.upload({
             elem: '#coverImage'
-            , url: '上传接口url'
+            , url: '/manage/article/uploadimage'
             , success: function (res) {
-                console.log(res); //上传成功返回值，必须为json格式
+                upload_success.src = res.data; //上传成功返回值，必须为json格式
             }
         });
     });

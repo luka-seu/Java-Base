@@ -7,9 +7,9 @@ package cn.plasticlove.commons;
  */
 public enum ResponseCode {
     //返回成功对应1
-    SUCCESS(1,"success"),
+    SUCCESS(0,"success"),
     //返回失败对应0
-    ERROR(0,"error");
+    ERROR(1,"error");
 
 
     private final int code;

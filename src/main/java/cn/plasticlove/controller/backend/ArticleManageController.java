@@ -2,16 +2,20 @@ package cn.plasticlove.controller.backend;
 
 import cn.plasticlove.commons.PageConst;
 import cn.plasticlove.commons.ServerResponse;
+import cn.plasticlove.dao.TypeMapper;
 import cn.plasticlove.dto.ArticleDto;
+import cn.plasticlove.dto.ArticlePageDto;
 import cn.plasticlove.service.ArticleService;
+import cn.plasticlove.service.FileService;
 import cn.plasticlove.utils.PageStringUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * @author luka-seu
@@ -21,5 +25,28 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping(value = "/manage/article/")
 public class ArticleManageController {
+    @Autowired
+    private FileService fileService;
+
+    @Autowired
+    private ArticleService articleService;
+
+
+
+
+
+    @RequestMapping(value = "uploadimage")
+    @ResponseBody
+    public ServerResponse uploadImage(MultipartFile coverImage){
+
+        return fileService.uploadImage(coverImage);
+    }
+
+    @RequestMapping(value = "write")
+    @ResponseBody
+    public ServerResponse write(ArticlePageDto articlePageDto)  {
+
+        return  articleService.insertArticle(articlePageDto);
+    }
 
 }

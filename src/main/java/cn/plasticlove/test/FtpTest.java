@@ -20,7 +20,7 @@ public class FtpTest {
 
     @Test
     public void test() throws IOException {
-        File file = new File("E:\\java\\luka_blog\\LOG_FILE_PATH_IS_UNDEFINED\\error.log");
+        File file = new File("F:\\luka_blog\\src\\main\\webapp\\images\\handshake.png");
         List<File> files = Lists.newArrayList();
         files.add(file);
         String remote = "imgs";

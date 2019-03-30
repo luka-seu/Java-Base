@@ -29,6 +29,32 @@ public class FileUtils {
     private static FTPClient client = new FTPClient();
 
 
+    /**
+     * Upload boolean.
+     *
+     * @param fileList the file list
+     * @return the boolean
+     * @throws IOException the io exception
+     */
+    public static boolean upload(List<File> fileList) throws IOException {
+        String remotePath = "imgs";
+        return upload(remotePath, fileList);
+    }
+
+
+    /**
+     * Upload boolean.
+     *
+     * @param file the file
+     * @return the boolean
+     * @throws IOException the io exception
+     */
+    public static boolean upload(File file) throws IOException {
+        String remotePath = "imgs";
+        return upload(remotePath, file);
+    }
+
+
     private static boolean connectService() {
         boolean login = false;
         try {
@@ -43,6 +69,14 @@ public class FileUtils {
     }
 
 
+    /**
+     * Upload boolean.
+     *
+     * @param remotePath the remote path
+     * @param fileList   the file list
+     * @return the boolean
+     * @throws IOException the io exception
+     */
     public static boolean upload(String remotePath, List<File> fileList) throws IOException {
         boolean isUpload = false;
         InputStream is = null;
@@ -59,6 +93,45 @@ public class FileUtils {
                     client.storeFile(file.getName(), is);
                 }
                 isUpload = true;
+                logger.info("文件上传成功");
+            } catch (IOException e) {
+                logger.error("文件上传异常");
+                logger.error(e.getMessage());
+            } finally {
+                client.disconnect();
+                is.close();
+            }
+        }
+        return isUpload;
+    }
+
+
+    /**
+     * Upload boolean.
+     *
+     * @param remotePath the remote path
+     * @param file       the file
+     * @return the boolean
+     * @throws IOException the io exception
+     */
+    public static boolean upload(String remotePath, File file) throws IOException {
+        boolean isUpload = false;
+        InputStream is = null;
+
+        if (connectService()) {
+            try {
+                client.changeWorkingDirectory(remotePath);
+                client.setBufferSize(1024);
+                client.setControlEncoding("UTF-8");
+                client.setFileType(FTPClient.BINARY_FILE_TYPE);
+
+//                client.enterLocalPassiveMode();
+
+                is = new FileInputStream(file);
+                client.storeFile(file.getName(), is);
+
+                isUpload = true;
+                logger.info("文件上传成功");
             } catch (IOException e) {
                 logger.error("文件上传异常");
                 logger.error(e.getMessage());

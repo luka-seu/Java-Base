@@ -19,3 +19,10 @@
     </mvc:annotation-driven>'
 > 3.返回的通用响应没有getter方法（最难发现）
 
+
+- **linux ftp服务器要记得开启权限，不然无法上传成功**
+
+
+- **数据库中文乱码问题**
+
+> 在datasource.properties中配置jdbc.url时要加入userUnicode=true和characterEncoding=UTF-8.

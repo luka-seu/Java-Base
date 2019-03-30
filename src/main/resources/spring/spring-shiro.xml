@@ -33,7 +33,7 @@
 				/login=anon
 				/index=anon
 
-				/manage/**=authc
+				/manage/**=anon
 			</value>
 		</property>
 	</bean>

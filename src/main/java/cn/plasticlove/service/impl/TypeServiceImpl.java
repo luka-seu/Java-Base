@@ -1,5 +1,6 @@
 package cn.plasticlove.service.impl;
 
+import cn.plasticlove.commons.ServerResponse;
 import cn.plasticlove.dao.TypeMapper;
 import cn.plasticlove.entity.Type;
 import cn.plasticlove.service.TypeService;
@@ -16,5 +17,12 @@ import java.util.List;
 @Service
 public class TypeServiceImpl implements TypeService {
 
+    @Autowired
+    private TypeMapper typeMapper;
 
+    @Override
+    public ServerResponse getTypeList(){
+        List<Type> types = typeMapper.selectTypeList();
+        return ServerResponse.createResponseBySuccessData(types);
+    }
 }
