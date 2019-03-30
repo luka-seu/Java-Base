@@ -36,4 +36,9 @@ public class ArticleDto {
     private Boolean comment;//是否开启评论
 
     private Date createTime;//创建时间
+    private Date updateTime;//更新时间
+
+    private String content;//文章内容
+
+
 }

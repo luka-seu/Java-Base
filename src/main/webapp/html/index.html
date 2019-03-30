@@ -81,7 +81,7 @@
                     <span style="color: #009688">本站尚处于开发阶段，部分功能尚未完善</span>
                     <span style="color: red">现阶段先开发前台页面，之后会有后台业务</span>
                     <!--<span style="color: red">如果你觉得网站做得还不错，来Fly社区点个赞吧！<a href="http://fly.layui.com/case/2017/" target="_blank" style="color:#01AAED">点我前往</a></span>-->
-                    <span style="color: #009688">PlasticLove &nbsp;—— &nbsp;一个Java程序员的个人博客</span>
+                    <span style="color: #009688">PlasticLove—一个Java程序员的个人博客</span>
                 </div>
             </div>
             <!--左边文章列表-->
@@ -93,7 +93,7 @@
                     </div>
                     <div class="article-right">
                         <div class="article-title">
-                            <a href="detail.html" th:text="${{article.title}}">文章标题</a>
+                            <a th:href="'/detail/'+${{article.id}}" th:text="${{article.title}}">文章标题</a>
                         </div>
                         <div class="article-abstract" th:text="${{article.description}}">
                             文章简介

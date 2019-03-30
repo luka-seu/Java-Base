@@ -32,4 +32,12 @@ public interface ArticleService {
      * @return the server response
      */
     public ServerResponse insertArticle(ArticlePageDto articlePageDto);
+
+    /**
+     * Get article by id server response.
+     *
+     * @param articleId the article id
+     * @return the server response
+     */
+    public ServerResponse getArticleById(String articleId);
 }

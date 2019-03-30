@@ -20,9 +20,11 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author luka-seu
+ * The type Article service.
+ *
+ * @author luka -seu
  * @description 文章业务层实现
- * @create 2019/3/22-19:51
+ * @create 2019 /3/22-19:51
  */
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -84,5 +86,52 @@ public class ArticleServiceImpl implements ArticleService {
         }
         return ServerResponse.createResponseBySuccessMsg("文章上传成功");
 
+    }
+
+    @Override
+    public ServerResponse getArticleById(String articleId){
+        Long id = Long.valueOf(articleId);
+        Article article = articleMapper.selectByPrimaryKey(id);
+        if (article==null){
+            return ServerResponse.createResponseByErrorMsg("当前文章不存在");
+        }
+        return ServerResponse.createResponseBySuccessData(this.covertArticleToDto(article));
+
+    }
+
+    /**
+     * 转换article到articleDto
+     * @param article
+     * @return
+     */
+    private ArticleDto covertArticleToDto(Article article){
+        ArticleDto articleDto = new ArticleDto();
+        if (article.getUserId()!=null){
+            User user = userMapper.selectByPrimaryKey(article.getUserId());
+            articleDto.setUsername(user.getUsername());
+        }
+
+        if (article.getContent()!=null){
+
+            articleDto.setContent(article.getContent());
+        }
+        if (article.getUpdateTime()!=null){
+
+            articleDto.setUpdateTime(article.getUpdateTime());
+        }
+        if (article.getCreateTime()!=null){
+
+            articleDto.setCreateTime(article.getCreateTime());
+        }
+        if (article.getTypeId()!=null){
+            Type type = typeMapper.selectByPrimaryKey(article.getTypeId());
+            articleDto.setTypename(type.getTypename());
+        }
+        articleDto.setCommentCount(commentMapper.selectConutCommentByArticleId(article.getId()));
+        articleDto.setId(article.getId());
+        articleDto.setTitle(article.getTitle());
+
+
+        return articleDto;
     }
 }
