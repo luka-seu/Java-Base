@@ -103,7 +103,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">文章图片</label>
                         <div class="layui-input-block">
-                            <input type="file" name="coverImage" id="coverImage">
+                            <input type="file" name="image" id="image">
                             <img id="upload_success" height="80" width="80" >
                         </div>
                     </div>
@@ -336,8 +336,8 @@
 <script th:inline="javascript">
     layui.use('upload', function () {
         layui.upload({
-            elem: '#coverImage'
-            , url: '/manage/article/uploadimage'
+            elem: '#image'
+            , url: '/manage/file/image'
             , success: function (res) {
                 upload_success.src = res.data; //上传成功返回值，必须为json格式
             }
