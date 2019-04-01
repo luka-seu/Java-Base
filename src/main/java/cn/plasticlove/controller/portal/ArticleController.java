@@ -42,7 +42,7 @@ public class ArticleController {
 
     }
 
-    @RequestMapping(value = "typelist")
+    @RequestMapping(value = "writeArticle")
 
     public String getTypes(Model model){
         List<Type> typeList = (List<Type>) typeService.getTypeList().getData();
