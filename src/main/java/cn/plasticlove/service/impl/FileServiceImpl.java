@@ -14,10 +14,12 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * @author luka-seu
+ * The type File service.
+ *
+ * @author luka -seu
  * @description 图片上传服务实现
- * @create 2019-03 27-00:05
- **/
+ * @create 2019 -03 27-00:05
+ */
 @Service
 public class FileServiceImpl implements FileService {
     private Logger logger = LoggerFactory.getLogger(FileServiceImpl.class);

@@ -8,11 +8,12 @@ import java.io.File;
 import java.util.Properties;
 
 /**
- * @author luka-seu
+ * The type Properties utils.
+ *
+ * @author luka -seu
  * @description 读取properties配置文件工具类
- * @create 2019-03 27-23:52
- **/
-
+ * @create 2019 -03 27-23:52
+ */
 public class PropertiesUtils {
    private static Logger logger = LoggerFactory.getLogger(PropertiesUtils.class);
 
@@ -32,10 +33,11 @@ public class PropertiesUtils {
 
     /**
      * 获取属性
-     * @param key
-     * @return
+     *
+     * @param key the key
+     * @return string
      */
-   public static String getProperties(String key){
+    public static String getProperties(String key){
        File file = new File("blog.properties");
        loadFile(file);
        String value = props.getProperty(key.trim());
