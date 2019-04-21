@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * The type Detail controller.
  *
  * @author luka -seu
- * @description 文章详细内容的前端控制器
+ * @description the controller of details of articles
  * @create 2019 /3/30-15:56
  */
 @Controller

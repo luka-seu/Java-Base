@@ -5,7 +5,7 @@
     <constructor >
       <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
       <arg column="username" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="password" jdbcType="CHAR" javaType="java.lang.String" />
       <arg column="nickname" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="mobile" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -71,7 +71,7 @@
       last_login_time, login_count, remark, 
       status, create_time, update_time
       )
-    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=CHAR},
       #{nickname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{qq,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{gender,jdbcType=TINYINT}, 
       #{avatar,jdbcType=VARCHAR}, #{userType,jdbcType=CHAR}, #{company,jdbcType=VARCHAR}, 
@@ -175,7 +175,7 @@
         #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
+        #{password,jdbcType=CHAR},
       </if>
       <if test="nickname != null" >
         #{nickname,jdbcType=VARCHAR},
@@ -258,7 +258,7 @@
         username = #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
+        password = #{password,jdbcType=CHAR},
       </if>
       <if test="nickname != null" >
         nickname = #{nickname,jdbcType=VARCHAR},
@@ -338,7 +338,7 @@
   <update id="updateByPrimaryKey" parameterType="cn.plasticlove.entity.User" >
     update sys_user
     set username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
+      password = #{password,jdbcType=CHAR},
       nickname = #{nickname,jdbcType=VARCHAR},
       mobile = #{mobile,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},

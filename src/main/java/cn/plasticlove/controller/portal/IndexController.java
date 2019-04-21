@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * @author luka-seu
- * @description 首页的开发
+ * @description the index page
  * @create 2019/3/26-12:43
  */
 @Controller
@@ -32,12 +32,10 @@ public class IndexController {
         int page = PageStringUtil.pageString2Int(request.getParameter("page"));
         PageInfo<ArticleDto> dtoPageInfo = articleService.getArticleList(page, PageConst.pageSize).getData();
         List<ArticleDto> articleList = dtoPageInfo.getList();
-        //用户相关
-        //  userService.getUserDtoById(1L);
+
 
         model.addAttribute("articleList",articleList);
         model.addAttribute("pageCount",dtoPageInfo.getPages());
-        // model.addAttribute("pageSize",PageConst.pageSize);
         model.addAttribute("page",page);
         return "index";
     }
