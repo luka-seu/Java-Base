@@ -9,7 +9,7 @@ import cn.plasticlove.entity.User;
  */
 public interface UserService {
     /**
-     * 根据用户id封装用户
+     * Gets user by user id.
      *
      * @param id the id
      * @return user by user id
@@ -17,20 +17,19 @@ public interface UserService {
     public User getUserByUserId(Long id);
 
     /**
-     * 根据用户id封装用户dto
-     *
-     * @param id the id
-     * @return user dto by id
-     */
-    public UserDto getUserDtoById(Long id);
-
-
-    /**
-     * Login server response.
+     * Login
      *
      * @param username the username
      * @param password the password
      * @return the server response
      */
     public ServerResponse login(String username, String password);
+
+    /**
+     * Register
+     *
+     * @param userDto the user dto
+     * @return server response
+     */
+    public ServerResponse register(UserDto userDto);
 }

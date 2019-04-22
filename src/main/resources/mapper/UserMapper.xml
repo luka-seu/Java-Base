@@ -9,19 +9,16 @@
       <arg column="nickname" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="mobile" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="qq" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sina_blog" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="birthday" jdbcType="DATE" javaType="java.util.Date" />
       <arg column="gender" jdbcType="TINYINT" javaType="java.lang.Byte" />
       <arg column="avatar" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="user_type" jdbcType="CHAR" javaType="java.lang.String" />
-      <arg column="company" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="blog" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="github" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="location" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="source" jdbcType="CHAR" javaType="java.lang.String" />
       <arg column="privacy" jdbcType="TINYINT" javaType="java.lang.Byte" />
       <arg column="notification" jdbcType="TINYINT" javaType="java.lang.Byte" />
-      <arg column="score" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="experience" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="reg_ip" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="last_login_ip" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="last_login_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
@@ -33,9 +30,9 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, username, password, nickname, mobile, email, qq, birthday, gender, avatar, user_type, 
-    company, blog, location, source, privacy, notification, score, experience, reg_ip, 
-    last_login_ip, last_login_time, login_count, remark, status, create_time, update_time
+    id, username, password, nickname, mobile, email, sina_blog, birthday, gender, avatar, 
+    user_type, github, location, source, privacy, notification, reg_ip, last_login_ip, 
+    last_login_time, login_count, remark, status, create_time, update_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -45,39 +42,33 @@
   </select>
 
 
-  <select id="selectByUsername" resultType="cn.plasticlove.entity.User">
-    select
-    <include refid="Base_Column_List" />
-    from sys_user
-    where
-    username = #{username,jdbcType=VARCHAR}
+    <select id="selectByUsername" resultType="cn.plasticlove.entity.User">
+      select
+      <include refid="Base_Column_List" />
+      from sys_user
+      where username = #{username,jdbcType=VARCHAR}
+    </select>
 
-  </select>
-
-
-
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from sys_user
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="cn.plasticlove.entity.User" >
     insert into sys_user (id, username, password, 
       nickname, mobile, email, 
-      qq, birthday, gender, 
-      avatar, user_type, company, 
-      blog, location, source, 
-      privacy, notification, score, 
-      experience, reg_ip, last_login_ip, 
+      sina_blog, birthday, gender, 
+      avatar, user_type, github, 
+      location, source, privacy, 
+      notification, reg_ip, last_login_ip, 
       last_login_time, login_count, remark, 
       status, create_time, update_time
       )
-    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=CHAR},
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=CHAR}, 
       #{nickname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{qq,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{gender,jdbcType=TINYINT}, 
-      #{avatar,jdbcType=VARCHAR}, #{userType,jdbcType=CHAR}, #{company,jdbcType=VARCHAR}, 
-      #{blog,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{source,jdbcType=CHAR}, 
-      #{privacy,jdbcType=TINYINT}, #{notification,jdbcType=TINYINT}, #{score,jdbcType=INTEGER}, 
-      #{experience,jdbcType=INTEGER}, #{regIp,jdbcType=VARCHAR}, #{lastLoginIp,jdbcType=VARCHAR}, 
+      #{sinaBlog,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{gender,jdbcType=TINYINT}, 
+      #{avatar,jdbcType=VARCHAR}, #{userType,jdbcType=CHAR}, #{github,jdbcType=VARCHAR}, 
+      #{location,jdbcType=VARCHAR}, #{source,jdbcType=CHAR}, #{privacy,jdbcType=TINYINT}, 
+      #{notification,jdbcType=TINYINT}, #{regIp,jdbcType=VARCHAR}, #{lastLoginIp,jdbcType=VARCHAR}, 
       #{lastLoginTime,jdbcType=TIMESTAMP}, #{loginCount,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
@@ -103,8 +94,8 @@
       <if test="email != null" >
         email,
       </if>
-      <if test="qq != null" >
-        qq,
+      <if test="sinaBlog != null" >
+        sina_blog,
       </if>
       <if test="birthday != null" >
         birthday,
@@ -118,11 +109,8 @@
       <if test="userType != null" >
         user_type,
       </if>
-      <if test="company != null" >
-        company,
-      </if>
-      <if test="blog != null" >
-        blog,
+      <if test="github != null" >
+        github,
       </if>
       <if test="location != null" >
         location,
@@ -135,12 +123,6 @@
       </if>
       <if test="notification != null" >
         notification,
-      </if>
-      <if test="score != null" >
-        score,
-      </if>
-      <if test="experience != null" >
-        experience,
       </if>
       <if test="regIp != null" >
         reg_ip,
@@ -186,8 +168,8 @@
       <if test="email != null" >
         #{email,jdbcType=VARCHAR},
       </if>
-      <if test="qq != null" >
-        #{qq,jdbcType=VARCHAR},
+      <if test="sinaBlog != null" >
+        #{sinaBlog,jdbcType=VARCHAR},
       </if>
       <if test="birthday != null" >
         #{birthday,jdbcType=DATE},
@@ -201,11 +183,8 @@
       <if test="userType != null" >
         #{userType,jdbcType=CHAR},
       </if>
-      <if test="company != null" >
-        #{company,jdbcType=VARCHAR},
-      </if>
-      <if test="blog != null" >
-        #{blog,jdbcType=VARCHAR},
+      <if test="github != null" >
+        #{github,jdbcType=VARCHAR},
       </if>
       <if test="location != null" >
         #{location,jdbcType=VARCHAR},
@@ -218,12 +197,6 @@
       </if>
       <if test="notification != null" >
         #{notification,jdbcType=TINYINT},
-      </if>
-      <if test="score != null" >
-        #{score,jdbcType=INTEGER},
-      </if>
-      <if test="experience != null" >
-        #{experience,jdbcType=INTEGER},
       </if>
       <if test="regIp != null" >
         #{regIp,jdbcType=VARCHAR},
@@ -269,8 +242,8 @@
       <if test="email != null" >
         email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="qq != null" >
-        qq = #{qq,jdbcType=VARCHAR},
+      <if test="sinaBlog != null" >
+        sina_blog = #{sinaBlog,jdbcType=VARCHAR},
       </if>
       <if test="birthday != null" >
         birthday = #{birthday,jdbcType=DATE},
@@ -284,11 +257,8 @@
       <if test="userType != null" >
         user_type = #{userType,jdbcType=CHAR},
       </if>
-      <if test="company != null" >
-        company = #{company,jdbcType=VARCHAR},
-      </if>
-      <if test="blog != null" >
-        blog = #{blog,jdbcType=VARCHAR},
+      <if test="github != null" >
+        github = #{github,jdbcType=VARCHAR},
       </if>
       <if test="location != null" >
         location = #{location,jdbcType=VARCHAR},
@@ -301,12 +271,6 @@
       </if>
       <if test="notification != null" >
         notification = #{notification,jdbcType=TINYINT},
-      </if>
-      <if test="score != null" >
-        score = #{score,jdbcType=INTEGER},
-      </if>
-      <if test="experience != null" >
-        experience = #{experience,jdbcType=INTEGER},
       </if>
       <if test="regIp != null" >
         reg_ip = #{regIp,jdbcType=VARCHAR},
@@ -342,19 +306,16 @@
       nickname = #{nickname,jdbcType=VARCHAR},
       mobile = #{mobile,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
-      qq = #{qq,jdbcType=VARCHAR},
+      sina_blog = #{sinaBlog,jdbcType=VARCHAR},
       birthday = #{birthday,jdbcType=DATE},
       gender = #{gender,jdbcType=TINYINT},
       avatar = #{avatar,jdbcType=VARCHAR},
       user_type = #{userType,jdbcType=CHAR},
-      company = #{company,jdbcType=VARCHAR},
-      blog = #{blog,jdbcType=VARCHAR},
+      github = #{github,jdbcType=VARCHAR},
       location = #{location,jdbcType=VARCHAR},
       source = #{source,jdbcType=CHAR},
       privacy = #{privacy,jdbcType=TINYINT},
       notification = #{notification,jdbcType=TINYINT},
-      score = #{score,jdbcType=INTEGER},
-      experience = #{experience,jdbcType=INTEGER},
       reg_ip = #{regIp,jdbcType=VARCHAR},
       last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
       last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},

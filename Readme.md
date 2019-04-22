@@ -26,3 +26,5 @@
 - **数据库中文乱码问题**
 
 > 在datasource.properties中配置jdbc.url时要加入userUnicode=true和characterEncoding=UTF-8.
+
+>java.sql.SQLException: Data truncated for column 'user_type' at row 1  the type is not suit in db

@@ -8,7 +8,8 @@
     <!--<properties resource="classpath:config/datasource.properties"></properties>-->
 
     <!--指定特定数据库的jdbc驱动jar包的位置-->
-    <classPathEntry location="F:\maven_repository\repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar"/>
+<!--    <classPathEntry location="F:\maven_repository\repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar"/>-->
+    <classPathEntry location="E:\maven_repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar"/>
 
     <context id="default" targetRuntime="MyBatis3">
 
@@ -21,7 +22,7 @@
         <!--jdbc的数据库连接 -->
         <jdbcConnection
                 driverClass="com.mysql.jdbc.Driver"
-                connectionURL="jdbc:mysql://121.248.55.129/blog?autoReconnect=true"
+                connectionURL="jdbc:mysql://121.248.52.174/blog?autoReconnect=true"
                 userId="root"
                 password="0515">
         </jdbcConnection>

@@ -54,7 +54,7 @@
                 data: data.field,
                 dataType: 'JSON',
                 success: function (res) {
-                    console.log(res.msg);
+                    // console.log(res.msg);
                     if (res.status = '0') {
                        window.location.href = "/"
                     }else{
@@ -65,9 +65,6 @@
 
                 }
             });
-            // layer.alert(JSON.stringify(data.field), {
-            //     title: '最终的提交信息'
-            // });
             return false;
         });
 
