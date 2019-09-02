@@ -2,6 +2,8 @@ package cn.plasticlove.javabase.proxy.cglib;
 
 import net.sf.cglib.proxy.Enhancer;
 
+import java.util.concurrent.locks.ReadWriteLock;
+
 /**
  * @author luka-seu
  * @description 测试类
